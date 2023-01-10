@@ -38,9 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Installed
+    'graphene_django',
+
     # Own
     'apps.core',
-    'apps.vampire'
+    'apps.vampire',
+
+    'apischema'
 ]
 
 MIDDLEWARE = [
@@ -122,3 +127,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+GRAPHENE = {
+    'SCHEMA': 'apischema.schema.schema',
+}
