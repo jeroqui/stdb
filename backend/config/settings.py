@@ -42,10 +42,9 @@ INSTALLED_APPS = [
     'graphene_django',
 
     # Own
-    'apps.core',
-    'apps.vampire',
+    'src',
 
-    'apischema'
+    'src.apischema'
 ]
 
 MIDDLEWARE = [
@@ -128,6 +127,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+AUTH_USER_MODEL = 'src.User'
+
 GRAPHENE = {
-    'SCHEMA': 'apischema.schema.schema',
+    'SCHEMA': 'src.apischema.schema.schema',
 }

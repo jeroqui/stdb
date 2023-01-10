@@ -1,6 +1,6 @@
 from django.db import models
 
-from apps.core.models import Character, CharacterComponent
+from src.modules.apps.core.models import Character, CharacterComponent
 
 from .common import VampireClan
 
