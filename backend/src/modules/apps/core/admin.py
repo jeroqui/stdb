@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from .models import *
-from apps.vampire.models import VampireClan, VampireCC, HumanCC
+from src.modules.apps.vampire.models import VampireClan, VampireCC, HumanCC
 
 # Register your models here.
 class RelationshipsInline(admin.TabularInline):

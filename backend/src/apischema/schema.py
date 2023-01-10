@@ -1,6 +1,8 @@
 import graphene
 
-class Query(graphene.ObjectType):
+from src.modules.apps.core.schema.query import Query as CoreQuery
+
+class Query(CoreQuery, graphene.ObjectType):
     test = graphene.String()
 
     def resolve_test(self, info):
