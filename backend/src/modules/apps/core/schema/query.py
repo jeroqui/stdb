@@ -10,7 +10,7 @@ class Query(graphene.ObjectType):
     character = CustomNode.Field(coretypes.CharacterType)
     chronicle_characters = DjangoFilterConnectionField(coretypes.CharacterType)
 
-    def resolve_ball(self, info, id):
+    def resolve_character(self, info, id):
         return Character.objects.get(pk=id)
 
     def reolve_chronicle_characters(self, info, chronicle_id):
