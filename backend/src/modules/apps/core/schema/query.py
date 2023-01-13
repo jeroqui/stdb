@@ -1,7 +1,5 @@
 import graphene
-from graphene_django.filter import DjangoFilterConnectionField
 
-from src.modules.utils.schema import CustomNode
 from . import types as coretypes
 
 from src.modules.apps.core.models import Character, Chronicle, CharacterRelationship

@@ -1,5 +1,4 @@
-from graphene import relay
-
-class CustomNode(relay.Node):
-    class Meta:
-        name = 'Node'
+'''
+At some point I'd like to implement the conversion
+from public to private id as a field in a graphene interface
+'''
