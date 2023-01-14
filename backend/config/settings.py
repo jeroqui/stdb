@@ -131,4 +131,7 @@ AUTH_USER_MODEL = 'src.User'
 
 GRAPHENE = {
     'SCHEMA': 'src.apischema.schema.schema',
+    "MIDDLEWARE": [
+        "src.apischema.middleware.GlobalidMiddleware"
+    ]
 }
