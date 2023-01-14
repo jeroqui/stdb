@@ -7,7 +7,7 @@
             buttons
         </div>
         <div class="flex justify-end">
-            <UILinkButton>Profile</UILinkButton>
+            <UserProfileButon />
         </div>
     </nav>
 </template>
