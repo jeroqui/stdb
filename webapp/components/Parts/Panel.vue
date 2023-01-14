@@ -1,0 +1,9 @@
+<template>
+    <div class="max-w-3xl mx-auto my-10">
+        <StyleGlass>
+            <div class="p-10">
+                <slot></slot>
+            </div>
+        </StyleGlass>
+    </div>
+</template>
