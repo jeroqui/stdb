@@ -25,7 +25,7 @@
         </div>
     
         <!-- Items Menu -->
-        <div class="min-h-full flex flex-col justify-center ml-16">
+        <div class="flex flex-col mt-40 ml-16">
             <PartsMenuComponentsBoardItem v-for="item in ['item 1', 'other item', 'final item']">
                 {{ item }}
             </PartsMenuComponentsBoardItem>
