@@ -1,6 +1,7 @@
 import graphene
 
 from . import types as coretypes
+from src.modules.apps.vampire.schema import types as vampiretypes
 from src.modules.utils.schema import PublicId
 
 from src.modules.apps.core.models import Character, Chronicle, Plot, Sesion
@@ -12,7 +13,7 @@ class Query(graphene.ObjectType):
         return Chronicle.objects.all()
     
 
-    character = graphene.Field(coretypes.CharacterType)
+    character = graphene.Field(coretypes.CharacterType, id=PublicId(required=True))
     chronicle_characters = graphene.List(coretypes.CharacterType, chronicle=PublicId(required=True))
     def resolve_character(self, info, id):
         return Character.objects.get(pk=id)

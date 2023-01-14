@@ -1,6 +1,7 @@
 import graphene
 from graphene_django import DjangoObjectType, DjangoListField 
 
+from src.modules.apps.vampire.schema.types import HumanType
 from ..models import Character, CharacterRelationship, Chronicle, Plot, PlotStages, Sesion, Event
 
 class PublicId(graphene.Interface):
@@ -8,6 +9,7 @@ class PublicId(graphene.Interface):
     # so that logic is handled through a Graphene middleware
     # id = graphene.String(required=True)
     ...
+
 class ChronicleType(DjangoObjectType):
     class Meta:
         model = Chronicle
@@ -19,17 +21,18 @@ class CharacterRelationshipType(DjangoObjectType):
         model = CharacterRelationship
         fields = ("id", "feeling", "character2")
 
+
 class CharacterType(DjangoObjectType):
     class Meta:
         model = Character
-        fields = ("id", "chronicle", "name", "story", "pc")
+        fields = ("id", "chronicle", "name", "story", "pc", "humancc", "vampirecc")
 
 
     relationships = DjangoListField(CharacterRelationshipType)
 
     def resolve_relationships(parent, info):
         return CharacterRelationship.objects.filter(character1=parent)
-    
+
 
 class PlotType(DjangoObjectType):
     class Meta:
