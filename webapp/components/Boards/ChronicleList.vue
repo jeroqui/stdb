@@ -8,6 +8,7 @@
         <UIListItem
             v-for="item in result.chronicles"
             :key="item.id"
+            :to="item.id"
             @click="store.switchToChronicle(item.id)"
         >
             {{ item.name }}

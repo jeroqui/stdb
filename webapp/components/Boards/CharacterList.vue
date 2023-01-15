@@ -10,7 +10,7 @@
             :key="character.id"
             :name="character.name"
             :pc="character.pc"
-            @click="store.openBoard(boardNames.characterDetail)"
+            @click="store.openBoard(boardNames.characterDetail, character.id)"
         />
     </div>
 </template>

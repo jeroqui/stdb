@@ -33,10 +33,16 @@ const useDashboardStore = defineStore('boards', {
         }
     },
     actions: {
-        openBoard(boardName: string) {
+        openBoard(boardName: string, detailId?: string) {
             this.board = boardName;
+            if (detailId) {
+                navigateTo("/app/" + (this.chronicle as any).id + "/" + detailId)
+            }else {
+                navigateTo("/app/" + (this.chronicle as any).id)
+            }
         },
         switchToChronicle(chronicleId: string) {
+            navigateTo("/app/" + chronicleId);
             (this.chronicle as any) = {
                 id: chronicleId,
                 name: "Test"
