@@ -4,5 +4,14 @@ export default defineNuxtConfig({
         '@nuxtjs/tailwindcss',
         '@pinia/nuxt',
         'nuxt-icon',
-    ]    
+        '@nuxtjs/apollo',
+    ],
+
+    apollo: {
+        clients: {
+            default: {
+                httpEndpoint: 'https://localhost:8000/graphql'
+            }
+        },
+    },
 })
