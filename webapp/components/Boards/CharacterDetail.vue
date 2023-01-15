@@ -1,0 +1,3 @@
+<template>
+    Character Name
+</template>

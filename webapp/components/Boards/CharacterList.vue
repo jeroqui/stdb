@@ -5,13 +5,34 @@
     </div>
 
     <div class="mt-8">
-        <UIListItem v-for="item in ['Chronica 1', 'Nombre', 'Otra cosa']">{{item}}</UIListItem>
+        <BoardsCharacterListItem
+            v-for="character in result.chronicleCharacters"
+            :key="character.id"
+            :name="character.name"
+            :pc="character.pc"
+            @click="store.openBoard(boardNames.characterDetail)"
+        />
     </div>
 </template>
 
 <script lang="ts" setup>
-import { useDashboardStore } from '~~/stores/dashboardStore';
+import { useDashboardStore, boardNames } from '~~/stores/dashboardStore';
 
 const store = useDashboardStore();
 
+const query = gql`
+query getCharacters($chronicle_id: PublicId!) {
+	chronicleCharacters(chronicle: $chronicle_id) {
+    id,
+    name,
+    pc
+  }
+}
+`
+
+const variables = {
+    chronicle_id: (store.chronicle as any).id
+}
+
+const { result, error } = useQuery(query, variables);
 </script>

@@ -35,6 +35,13 @@ const useDashboardStore = defineStore('boards', {
     actions: {
         openBoard(boardName: string) {
             this.board = boardName;
+        },
+        switchToChronicle(chronicleId: string) {
+            (this.chronicle as any) = {
+                id: chronicleId,
+                name: "Test"
+            }
+            this.board = boardNames.charactersList;
         }
     },
 })

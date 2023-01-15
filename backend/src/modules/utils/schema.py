@@ -10,10 +10,11 @@ class PublicId(Scalar):
     The public `Id` the client can see.
     """
 
-    parse_value = str
-
     @staticmethod
     def parse_literal(ast, _variables=None):
         if isinstance(ast, StringValueNode):
             return to_db_id(ast.value)
         return Undefined
+    
+    def parse_value(value):
+        return to_db_id(value)
