@@ -1,7 +1,9 @@
 <template>
-    <div class="flex">
-        <div class="w-16 h-16 rounded-full shrink-0 grow-0 bg-opacity-5 hover:bg-primary">
-            icon
+    <div class="flex hover:bg-dark">
+        <div class="w-16 shrink-0 grow-0">
+            <div class="rounded-full flex justify-center">
+                <slot name="icon"></slot>
+            </div>
         </div>
         <slot></slot>
     </div>

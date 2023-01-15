@@ -9,15 +9,27 @@
             <div class="h-full flex flex-col justify-center">
                 <div class="flex flex-col justify-around min-h-1/2">
                     <PartsMenuComponentsBoardButton @click="switchTo(boardNames.charactersList)">
+                        <template #icon>
+                            <Icon name="material-symbols:person-2-rounded" size="2em"></Icon>
+                        </template>
                         Characters
                     </PartsMenuComponentsBoardButton>
                     <PartsMenuComponentsBoardButton @click="switchTo('locations')">
+                        <template #icon>
+                            <Icon name="ic:baseline-location-on" size="2em"></Icon>
+                        </template>
                         Locations
                     </PartsMenuComponentsBoardButton>
                     <PartsMenuComponentsBoardButton @click="switchTo('plots')">
+                        <template #icon>
+                            <Icon name="mdi:lightbulb-on" size="2em"></Icon>
+                        </template>
                         Plots
                     </PartsMenuComponentsBoardButton>
                     <PartsMenuComponentsBoardButton @click="switchTo('sessions')">
+                        <template #icon>
+                            <Icon name="mdi:book-edit"  size="2em"></Icon>
+                        </template>
                         Sessions
                     </PartsMenuComponentsBoardButton>
                 </div>

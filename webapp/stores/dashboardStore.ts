@@ -12,8 +12,8 @@ const boardNames = {
 };
 
 let detailBoards = [
-    boardNames.chroniclesList,
-    boardNames.charactersList
+    boardNames.chronicleDetail,
+    boardNames.characterDetail
 ]
 
 
