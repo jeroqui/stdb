@@ -1,23 +1,23 @@
 <template>
     <div class="relative">
         <div class="absolute z-10 left-0 right-0">
-            <PartsMenuComponentsChronicle />
+            <PartsMenuComponentsChronicle @click="switchTo(boardNames.chroniclesList)" />
         </div>
     
         <!-- Boards Menu -->
-        <div class="absolute bg-black top-0 left-0 right-0 bottom-0 overflow-hidden" id="boards-menu">
+        <div class="absolute bg-black top-0 left-0 right-0 bottom-0 overflow-hidden" id="boards-menu" :class="store.detail ? 'detail' : ''">
             <div class="h-full flex flex-col justify-center">
                 <div class="flex flex-col justify-around min-h-1/2">
-                    <PartsMenuComponentsBoardButton>
+                    <PartsMenuComponentsBoardButton @click="switchTo(boardNames.charactersList)">
                         Characters
                     </PartsMenuComponentsBoardButton>
-                    <PartsMenuComponentsBoardButton>
+                    <PartsMenuComponentsBoardButton @click="switchTo('locations')">
                         Locations
                     </PartsMenuComponentsBoardButton>
-                    <PartsMenuComponentsBoardButton>
+                    <PartsMenuComponentsBoardButton @click="switchTo('plots')">
                         Plots
                     </PartsMenuComponentsBoardButton>
-                    <PartsMenuComponentsBoardButton>
+                    <PartsMenuComponentsBoardButton @click="switchTo('sessions')">
                         Sessions
                     </PartsMenuComponentsBoardButton>
                 </div>
@@ -34,8 +34,25 @@
 </template>
 
 
-<style scoped>
+<style lang="scss" scoped>
 #boards-menu {
-    width: 4rem;
+    width: 100%;
+    transition: width .4s ease;
+    &.detail {
+        width: 4rem;
+    }
 }
 </style>
+
+<script lang="ts" setup>
+import { boardNames, useDashboardStore } from '~~/stores/dashboardStore';
+
+const store = useDashboardStore();
+
+
+function switchTo(detailName: string) {
+    store.openBoard(detailName);
+}
+
+
+</script>
