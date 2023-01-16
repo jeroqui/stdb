@@ -6,7 +6,7 @@
 
     <div class="mt-8">
         <BoardsCharacterListItem
-            v-for="character in result.chronicleCharacters"
+            v-for="character in data.chronicleCharacters"
             :key="character.id"
             :name="character.name"
             :pc="character.pc"
@@ -31,8 +31,8 @@ query getCharacters($chronicle_id: PublicId!) {
 `
 
 const variables = {
-    chronicle_id: (store.chronicle as any).id
+    chronicle_id: store.chronicle
 }
 
-const { result, error } = useQuery(query, variables);
+const { data, error } = await useAsyncQuery(query, variables);
 </script>

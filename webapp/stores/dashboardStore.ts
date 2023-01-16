@@ -20,7 +20,7 @@ let detailBoards = [
 
 const useDashboardStore = defineStore('boards', {
     state: () => ({
-        chronicle: null,
+        chronicle: "",
         board: boardNames.chroniclesList,
         characters: [],
         locations: [],
@@ -36,18 +36,10 @@ const useDashboardStore = defineStore('boards', {
         openBoard(boardName: string, detailId?: string) {
             this.board = boardName;
             if (detailId) {
-                navigateTo("/app/" + (this.chronicle as any).id + "/" + detailId)
+                navigateTo("/app/" + this.chronicle + "/" + detailId)
             }else {
-                navigateTo("/app/" + (this.chronicle as any).id)
+                navigateTo("/app/" + this.chronicle)
             }
-        },
-        switchToChronicle(chronicleId: string) {
-            navigateTo("/app/" + chronicleId);
-            (this.chronicle as any) = {
-                id: chronicleId,
-                name: "Test"
-            }
-            this.board = boardNames.charactersList;
         }
     },
 })

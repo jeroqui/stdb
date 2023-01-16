@@ -6,19 +6,23 @@ from src.modules.utils.schema import PublicId
 
 from src.modules.apps.core.models import Character, Chronicle, Plot, Sesion
 
+import time
 
 class Query(graphene.ObjectType):
     chronicles = graphene.List(coretypes.ChronicleType)
     def resolve_chronicles(self, info):
+        time.sleep(2)
         return Chronicle.objects.all()
     
 
     character = graphene.Field(coretypes.CharacterType, id=PublicId(required=True))
     chronicle_characters = graphene.List(coretypes.CharacterType, chronicle=PublicId(required=True))
     def resolve_character(self, info, id):
+        time.sleep(2)
         return Character.objects.get(pk=id)
 
     def resolve_chronicle_characters(self, info, chronicle):
+        time.sleep(2)
         chronicle_obj = Chronicle.objects.filter(pk=chronicle).first()
         if not chronicle:
             return Character.objects.none()

@@ -6,12 +6,14 @@
 
     <div class="mt-8">
         <UIListItem
-            v-for="item in result.chronicles"
+            v-for="item in data.chronicles"
             :key="item.id"
-            :to="item.id"
-            @click="store.switchToChronicle(item.id)"
-        >
-            {{ item.name }}
+            >
+            <NuxtLink
+                :to="'/app/'+item.id"
+            >
+                {{ item.name }}
+            </NuxtLink>
         </UIListItem>
     </div>
 </template>
@@ -29,6 +31,6 @@ query getChroncicles {
   }
 }
 `
-const { result, error } = useQuery(query)
+const { data, error } = await useAsyncQuery(query)
 
 </script>

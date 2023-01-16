@@ -1,6 +1,6 @@
 <template>
     <div class="text-center mt-16 text-xl font-bold">
-        <h2 v-if="chronicle">{{ (chronicle as any).name }}</h2>
+        <h2 v-if="chronicle">{{ chronicle }}</h2>
         <UILogo v-else />
     </div>
 </template>

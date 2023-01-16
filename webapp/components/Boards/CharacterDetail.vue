@@ -1,7 +1,7 @@
 <template>
-    <h1 class="text-4xl font-black">{{ result.character.name }}</h1>
+    <h1 class="text-4xl font-black">{{ data.character?.name || "Name" }}</h1>
 
-    {{ result.character.story }}
+    {{ data.character?.story || "no-description" }}
 </template>
 
 <script lang="ts" setup>
@@ -32,7 +32,7 @@ const variables = {
     character_id: props.detailId
 }
 
-const { result, error } = useQuery(query, variables);
+const { data, error } = await useAsyncQuery(query, variables);
 
 
 
