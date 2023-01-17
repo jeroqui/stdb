@@ -1,5 +1,8 @@
 <template>
     <div>
-        Loading detail...
+        <div class="flex justify-between">
+            <SkeletonBlock />
+            <SkeletonBlock />
+        </div>
     </div>
 </template>
