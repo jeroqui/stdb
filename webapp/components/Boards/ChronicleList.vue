@@ -6,7 +6,7 @@
 
     <div class="mt-8">
         <UIListItem
-            v-for="item in data.chronicles"
+            v-for="item in data?.chronicles"
             :key="item.id"
             >
             <NuxtLink
@@ -31,6 +31,13 @@ query getChroncicles {
   }
 }
 `
-const { data, error } = await useAsyncQuery(query)
+type ChroniclesResult = {
+    chronicles: {
+        id: string;
+        name: string;
+    }[]
+}
+
+const { data, error } = await useAsyncQuery<ChroniclesResult>(query)
 
 </script>

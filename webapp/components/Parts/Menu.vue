@@ -66,5 +66,4 @@ function switchTo(detailName: string) {
     store.openBoard(detailName);
 }
 
-
 </script>
