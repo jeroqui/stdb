@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useDashboardStore, boardNames } from '~~/stores/dashboardStore';
+import { useDashboardStore } from '~~/stores/dashboardStore';
 
 const store = useDashboardStore();
 

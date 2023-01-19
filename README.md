@@ -7,3 +7,7 @@ This is a personal project to record my (vampire) RP campaigns in a structured a
 
 
 ## Development
+```shell
+python manage.py runserver  # For backend at /backend/
+yarn dev                    # For frontend at /webapp/
+```

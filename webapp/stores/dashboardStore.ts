@@ -1,27 +1,12 @@
 import { defineStore } from "pinia"
 
-
-const boardNames = {
-    // Lists
-    chroniclesList: "CHRONICLES_LIST",
-    charactersList: "CHARACTERS_LIST",
-
-    // Details
-    chronicleDetail: "CHRONICLE_DETAIL",
-    characterDetail: "CHARACTER_DETAIL"
-};
-
-let detailBoards = [
-    boardNames.chronicleDetail,
-    boardNames.characterDetail
-]
-
+import { DashboardBoards } from "~~/utils/boards";
 
 
 const useDashboardStore = defineStore('boards', {
     state: () => ({
         chronicle: "",
-        board: boardNames.chroniclesList,
+        board: DashboardBoards.getDefault(),
         characters: [],
         locations: [],
         plots: [],
@@ -29,12 +14,13 @@ const useDashboardStore = defineStore('boards', {
     }),
     getters: {
         detail(): boolean {
-            return detailBoards.includes(this.board);
+            return this.board.is_detail;
         }
     },
     actions: {
         openBoard(boardName: string, detailId?: string) {
-            this.board = boardName;
+            this.board = DashboardBoards.getBoardByName(boardName)!;
+            
             if (detailId) {
                 navigateTo("/app/" + this.chronicle + "/" + detailId)
             }else {
@@ -45,4 +31,4 @@ const useDashboardStore = defineStore('boards', {
 })
 
 
-export { boardNames, useDashboardStore }
+export { useDashboardStore }

@@ -10,13 +10,13 @@
             :key="character.id"
             :name="character.name"
             :pc="character.pc"
-            @click="store.openBoard(boardNames.characterDetail, character.id)"
+            @click="store.openBoard(DashboardBoards.boardNames.CHARACTER_DETAIL, character.id)"
         />
     </div>
 </template>
 
 <script lang="ts" setup>
-import { useDashboardStore, boardNames } from '~~/stores/dashboardStore';
+import { useDashboardStore } from '~~/stores/dashboardStore';
 
 const store = useDashboardStore();
 

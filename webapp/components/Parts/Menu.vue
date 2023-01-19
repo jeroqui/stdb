@@ -1,14 +1,14 @@
 <template>
     <div class="relative">
         <div class="absolute z-10 left-0 right-0">
-            <PartsMenuComponentsChronicle @click="switchTo(boardNames.chroniclesList)" />
+            <PartsMenuComponentsChronicle @click="switchTo(DashboardBoards.boardNames.CHRONICLES_LIST)" />
         </div>
     
         <!-- Boards Menu -->
         <div class="absolute bg-black top-0 left-0 right-0 bottom-0 overflow-hidden" id="boards-menu" :class="store.detail ? 'detail' : ''">
             <div class="h-full flex flex-col justify-center">
                 <div class="flex flex-col justify-around min-h-1/2">
-                    <PartsMenuComponentsBoardButton @click="switchTo(boardNames.charactersList)">
+                    <PartsMenuComponentsBoardButton @click="switchTo(DashboardBoards.boardNames.CHARACTERS_LIST)">
                         <template #icon>
                             <Icon name="material-symbols:person-2-rounded" size="2em"></Icon>
                         </template>
@@ -57,7 +57,8 @@
 </style>
 
 <script lang="ts" setup>
-import { boardNames, useDashboardStore } from '~~/stores/dashboardStore';
+import { useDashboardStore } from '~~/stores/dashboardStore';
+import { DashboardBoards } from '~~/utils/boards';
 
 const store = useDashboardStore();
 
