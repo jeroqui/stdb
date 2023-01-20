@@ -2,6 +2,7 @@ type Board = {
     name: string;
     component: string;
     is_detail: boolean;
+    is_fullscreen: boolean;
 }
 
 class Boards {
@@ -23,7 +24,8 @@ class Boards {
         let board = {
             name,
             component,
-            is_detail
+            is_detail,
+            is_fullscreen: false
         }
         this.boards.push(board)
         this.boardNames[name] = name
@@ -37,7 +39,8 @@ class Boards {
         let defaultBoard = {
             name,
             component: "<h1>" + name + "</h1>",
-            is_detail: false
+            is_detail: false,
+            is_fullscreen: false
         }
 
         return defaultBoard
@@ -55,7 +58,7 @@ let DashboardBoards = new Boards();
 
 // Define all boards that we want to use
 DashboardBoards.define("CHRONICLES_LIST", "BoardsChronicleList")
-DashboardBoards.define("CHARACTERS_LIST", "BoardsCharacterList")
+DashboardBoards.define("CHARACTERS_LIST", "BoardsCharacterListBoard")
 DashboardBoards.define("CHRONICLE_DETAIL", "BoardsChronicleDetail", true)
 DashboardBoards.define("CHARACTER_DETAIL", "BoardsCharacterDetail", true)
 

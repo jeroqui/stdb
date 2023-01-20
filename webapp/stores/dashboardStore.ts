@@ -6,6 +6,7 @@ import { DashboardBoards } from "~~/utils/boards";
 const useDashboardStore = defineStore('boards', {
     state: () => ({
         chronicle: "",
+        detailId: "",
         board: DashboardBoards.getDefault(),
         characters: [],
         locations: [],
@@ -20,11 +21,8 @@ const useDashboardStore = defineStore('boards', {
     actions: {
         openBoard(boardName: string, detailId?: string) {
             this.board = DashboardBoards.getBoardByName(boardName)!;
-            
-            if (detailId) {
-                navigateTo("/app/" + this.chronicle + "/" + detailId)
-            }else {
-                navigateTo("/app/" + this.chronicle)
+            if (detailId != undefined) {
+                this.detailId = detailId;
             }
         }
     },

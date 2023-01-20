@@ -1,15 +1,17 @@
 <template>
     <h1 class="text-4xl font-black">{{ character.name || "Name" }}</h1>
 
-    {{ character.story || "no-description" }}
+    <p>
+        {{ character.story || "no-description" }}
+    </p>
+
+    <!-- Add a table of contents of existing CCs to quickly go to info. -->
+
+    <BoardsCharacterHumanCC />
 </template>
 
 <script lang="ts" setup>
-const props = defineProps({
-    detailId: {
-        type: String
-    }
-})
+import { useDashboardStore } from '~~/stores/dashboardStore';
 
 
 // If no detail was provided
@@ -19,6 +21,8 @@ const character = reactive({
     name: "",
     story: ""
 });
+
+const store = useDashboardStore();
 
 
 type CharacterResult = {
@@ -37,7 +41,7 @@ type CharacterResult = {
 };
 
 
-if (props.hasOwnProperty("detailId")) {
+if (store.detailId != "" && store.detailId != undefined) {
     // If we have a detail id, we want to fetch that character's data.
     const query = gql`
   query getCharacter($character_id: PublicId!) {
@@ -57,14 +61,14 @@ if (props.hasOwnProperty("detailId")) {
   `
 
     const variables = {
-        character_id: props.detailId
+        character_id: store.detailId
     }
 
 
     const { data, error } = await useAsyncQuery<CharacterResult>(query, variables);
 
     // Save the data to a reactive reference so we can edit it.
-    if ('character' in data) {
+    if ('value' in data) {
         character.name = data.value?.character.name!;
         character.story = data.value?.character.story || "";
     }

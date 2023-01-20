@@ -1,18 +1,14 @@
 <template>
-    <PartsPanel>
-        <KeepAlive>
-            <Suspense>
+    <div>
+        <div class="min-h-screen" v-if="store.board.is_fullscreen">
+            <NuxtDynamic :isComponent="store.board.component"></NuxtDynamic>
+        </div>
+        <PartsPanel v-else>
+            <KeepAlive>
                 <NuxtDynamic :isComponent="store.board.component"></NuxtDynamic>
-    
-                <template #fallback>
-                    <div>
-                        <SkeletonBoardDetail v-if="store.detail" />
-                        <SkeletonBoardList v-else />
-                    </div>
-                </template>
-            </Suspense>
-        </KeepAlive>
-    </PartsPanel>
+            </KeepAlive>
+        </PartsPanel>
+    </div>
 </template>
 
 
