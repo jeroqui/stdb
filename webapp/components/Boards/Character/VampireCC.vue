@@ -1,6 +1,6 @@
 <template>
     <BoardsCharacterCC
-        button-create-text="Add Human Info">
+        button-create-text="Add Vampire Info">
         
     </BoardsCharacterCC>
 </template>

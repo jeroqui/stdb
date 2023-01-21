@@ -1,13 +1,25 @@
 <template>
-    <h1 class="text-4xl font-black">{{ character.name || "Name" }}</h1>
-
-    <p>
-        {{ character.story || "no-description" }}
-    </p>
+    <div class="flex">
+        <div class="flex-grow pr-8">
+            <h1 class="text-4xl text-center font-black">{{ character.name || "Name" }}</h1>
+        
+            <p>
+                {{ character.story || "no-description" }}
+            </p>
+        </div>
+        <div class="h-80 w-60 bg-dark bg-opacity-40 rounded-xl"></div>
+    </div>
 
     <!-- Add a table of contents of existing CCs to quickly go to info. -->
 
-    <BoardsCharacterHumanCC />
+    <div class="mt-10">
+      <BoardsCharacterHumanCC />
+      <BoardsCharacterVampireCC />
+      <div class="text-center">
+        ---
+      </div>
+      <BoardsCharacterVampireCC />
+    </div>
 </template>
 
 <script lang="ts" setup>

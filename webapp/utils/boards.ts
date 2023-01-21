@@ -1,6 +1,7 @@
 type Board = {
     name: string;
     component: string;
+    parentBoard?: string;
     is_detail: boolean;
     is_fullscreen: boolean;
 }
@@ -16,17 +17,22 @@ class Boards {
         this.default = "";
     }
 
-    define(name: string, component: string, is_detail: boolean = false) {
+    define(name: string, component: string, is_detail: boolean = false, parentBoard: string = "") {
         if (this.boards.length === 0){
             this.default = name
         }
 
-        let board = {
+        let board: Board = {
             name,
             component,
             is_detail,
             is_fullscreen: false
         }
+
+        if (parentBoard != "") {
+            board.parentBoard = parentBoard
+        }
+
         this.boards.push(board)
         this.boardNames[name] = name
     }
@@ -60,7 +66,7 @@ let DashboardBoards = new Boards();
 DashboardBoards.define("CHRONICLES_LIST", "BoardsChronicleList")
 DashboardBoards.define("CHARACTERS_LIST", "BoardsCharacterListBoard")
 DashboardBoards.define("CHRONICLE_DETAIL", "BoardsChronicleDetail", true)
-DashboardBoards.define("CHARACTER_DETAIL", "BoardsCharacterDetail", true)
+DashboardBoards.define("CHARACTER_DETAIL", "BoardsCharacterDetail", true, "CHARACTERS_LIST")
 
 // This object can now be used to switch to a new board in any component
 export {DashboardBoards}
