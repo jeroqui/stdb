@@ -5,7 +5,7 @@
         </div>
     
         <!-- Boards Menu -->
-        <div class="fixed bg-black top-0 left-0 right-0 bottom-0 overflow-hidden" id="boards-menu" :class="store.detail ? 'detail' : ''">
+        <div class="absolute bg-black top-0 left-0 right-0 bottom-0 overflow-hidden" id="boards-menu" :class="store.detail ? 'detail' : ''">
             <div class="h-full flex flex-col justify-center">
                 <div class="flex flex-col justify-around min-h-1/2">
                     <PartsMenuComponentsBoardButton @click="switchTo(DashboardBoards.boardNames.CHARACTERS_LIST)">

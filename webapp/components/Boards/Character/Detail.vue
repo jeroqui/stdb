@@ -1,16 +1,18 @@
 <template>
     <div class="flex">
         <div class="flex-grow pr-8">
-            <h1 class="text-4xl text-center font-black">{{ character.name || "Name" }}</h1>
+            <h1 class="text-4xl ml-8 mt-8 font-black">{{ character.name || "Name" }}</h1>
         
             <p>
                 {{ character.story || "no-description" }}
             </p>
         </div>
-        <div class="h-80 w-60 bg-dark bg-opacity-40 rounded-xl"></div>
+        <div class="h-80 w-60 bg-dark bg-opacity-20 rounded-xl"></div>
     </div>
 
     <!-- Add a table of contents of existing CCs to quickly go to info. -->
+
+    <BoardsCharacterRelationships />
 
     <div class="mt-10">
       <BoardsCharacterHumanCC />
