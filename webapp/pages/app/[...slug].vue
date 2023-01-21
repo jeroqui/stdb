@@ -4,8 +4,11 @@
             <NuxtDynamic :isComponent="store.board.component"></NuxtDynamic>
         </div>
         <PartsPanel v-else>
+            <!-- Panel Boards ~switch statement~ -->
             <KeepAlive>
-                <NuxtDynamic :isComponent="store.board.component"></NuxtDynamic>
+                <BoardsChronicleList v-if="store.board.name === DashboardBoards.boardNames.CHRONICLES_LIST" />
+                <BoardsCharacterListBoard v-else-if="store.board.name === DashboardBoards.boardNames.CHARACTERS_LIST" />
+                <BoardsCharacterDetail v-else-if="store.board.name === DashboardBoards.boardNames.CHARACTER_DETAIL" :detailId="detailId" :key="detailId" />
             </KeepAlive>
         </PartsPanel>
     </div>
@@ -13,9 +16,11 @@
 
 
 <script setup>
+import { storeToRefs } from 'pinia';
 import { useDashboardStore } from '~~/stores/dashboardStore';
 
 const store = useDashboardStore();
+const { detailId } = storeToRefs(store);
 
 const route = useRoute()
 

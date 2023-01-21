@@ -25,8 +25,11 @@
 </template>
 
 <script lang="ts" setup>
-import { useDashboardStore } from '~~/stores/dashboardStore';
-
+const props = defineProps({
+    detailId: {
+      type: String,
+    }
+});
 
 // If no detail was provided
 // -> we want to create a new character instead of viewing or updating an existing one.
@@ -35,9 +38,6 @@ const character = reactive({
     name: "",
     story: ""
 });
-
-const store = useDashboardStore();
-
 
 type CharacterResult = {
     character: {
@@ -55,7 +55,7 @@ type CharacterResult = {
 };
 
 
-if (store.detailId != "" && store.detailId != undefined) {
+if (props.detailId != "" && props.detailId != undefined) {
     // If we have a detail id, we want to fetch that character's data.
     const query = gql`
   query getCharacter($character_id: PublicId!) {
@@ -75,7 +75,7 @@ if (store.detailId != "" && store.detailId != undefined) {
   `
 
     const variables = {
-        character_id: store.detailId
+        character_id: props.detailId
     }
 
 
