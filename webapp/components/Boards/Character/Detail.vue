@@ -1,33 +1,32 @@
 <template>
-    <div class="flex">
-        <div class="flex-grow pr-8">
-            <h1 class="text-4xl ml-8 mt-8 font-black">{{ character.name || "Name" }}</h1>
-        
-            <p>
-                {{ character.story || "no-description" }}
-            </p>
+    <SkeletonBoardDetail v-if="loading" />
+    <div v-else>
+        <div class="flex">
+            <div class="flex-grow pr-8">
+                <h1 class="text-4xl ml-8 mt-8 font-black">{{ character.name || "Name" }}</h1>
+    
+                <p>
+                    {{ character.story || "no-description" }}
+                </p>
+            </div>
+            <div class="h-80 w-60 bg-dark bg-opacity-20 rounded-xl"></div>
         </div>
-        <div class="h-80 w-60 bg-dark bg-opacity-20 rounded-xl"></div>
+    
+        <BoardsCharacterRelationships />
     </div>
 
-    <!-- Add a table of contents of existing CCs to quickly go to info. -->
-
-    <BoardsCharacterRelationships />
-
     <div class="mt-10">
-      <BoardsCharacterHumanCC />
-      <BoardsCharacterVampireCC />
-      <div class="text-center">
-        ---
-      </div>
-      <BoardsCharacterVampireCC />
+        <BoardsCharacterHumanCC />
+        <BoardsCharacterVampireCC />
+        <hr>
+        <BoardsCharacterVampireCC />
     </div>
 </template>
 
 <script lang="ts" setup>
 const props = defineProps({
     detailId: {
-      type: String,
+        type: String,
     }
 });
 
@@ -38,6 +37,10 @@ const character = reactive({
     name: "",
     story: ""
 });
+
+
+let loading = ref(false);
+
 
 type CharacterResult = {
     character: {
@@ -53,7 +56,6 @@ type CharacterResult = {
         }[]
     }
 };
-
 
 if (props.detailId != "" && props.detailId != undefined) {
     // If we have a detail id, we want to fetch that character's data.
@@ -78,14 +80,20 @@ if (props.detailId != "" && props.detailId != undefined) {
         character_id: props.detailId
     }
 
+    
+    
+    const { loading:_loading, onResult } = useQuery<CharacterResult>(query, variables);
 
-    const { data, error } = await useAsyncQuery<CharacterResult>(query, variables);
+    loading = _loading;
 
-    // Save the data to a reactive reference so we can edit it.
-    if ('value' in data) {
-        character.name = data.value?.character.name!;
-        character.story = data.value?.character.story || "";
-    }
+
+    onResult(result => {
+        // Save the data to a reactive reference so we can edit it.
+        if ('data' in result) {
+            character.name = result.data.character.name;
+            character.story = result.data.character.story || "";
+        }
+    })
 }
 
 
