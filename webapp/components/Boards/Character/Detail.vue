@@ -96,7 +96,4 @@ if (props.detailId != "" && props.detailId != undefined) {
     })
 }
 
-
-
-
 </script>
