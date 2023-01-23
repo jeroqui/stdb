@@ -1,11 +1,17 @@
 <template>
-    <span v-if="!editing" @click="edit()">
+    <div
+        v-if="!editing"
+        tabindex="0"
+        @focus="edit()"
+        @click="edit()"
+        class="w-full cursor-text"
+    >
         <span v-if="text">{{ text }}</span>
         <span v-else class="text-dark text-opacity-60">{{ defaultText }}</span>
-    </span>
+    </div>
     <input
         v-else
-        class="bg-light placeholder:text-dark placeholder:text-opacity-60"
+        class="w-full bg-light placeholder:text-dark placeholder:text-opacity-60"
         type="text" 
         :placeholder="defaultText"
         :value="text || ''"

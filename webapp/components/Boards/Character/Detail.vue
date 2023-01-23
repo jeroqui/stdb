@@ -11,7 +11,7 @@
                     {{ character.story || "no-description" }}
                 </p>
             </div>
-            <div class="h-80 w-60 bg-dark bg-opacity-20 rounded-xl"></div>
+            <div class="h-80 w-60 shrink-0 bg-dark bg-opacity-20 rounded-xl"></div>
         </div>
     
         <BoardsCharacterRelationships />

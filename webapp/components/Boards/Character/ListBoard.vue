@@ -1,6 +1,6 @@
 <template>
     <div class="flex justify-between">
-        <h1 class="text-4xl font-black">Characters</h1>
+        <h1 class="text-4xl font-black w-full">Characters</h1>
         <UIButton @click="store.openBoard(DashboardBoards.boardNames.CHARACTER_DETAIL, '')">New Character</UIButton>
     </div>
 
