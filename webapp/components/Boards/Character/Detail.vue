@@ -3,7 +3,9 @@
     <div v-else>
         <div class="flex">
             <div class="flex-grow pr-8">
-                <h1 class="text-4xl ml-8 mt-8 font-black">{{ character.name || "Name" }}</h1>
+                <h1 class="text-4xl ml-8 mt-8 font-black">
+                    <UIField :text="character.name" default-text="Character Name" />
+                </h1>
     
                 <p>
                     {{ character.story || "no-description" }}

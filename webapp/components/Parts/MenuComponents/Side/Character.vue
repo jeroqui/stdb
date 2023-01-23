@@ -1,6 +1,6 @@
 <template>
     <div class="flex justify-center">
-        <PartsMenuComponentsSideViewButton>
+        <PartsMenuComponentsSideViewButton @click="store.openBoard(DashboardBoards.boardNames.CHARACTER_DETAIL, '')">
             <Icon name="ic:sharp-plus" size="1.5rem" />
         </PartsMenuComponentsSideViewButton>
         <PartsMenuComponentsSideViewButton>
@@ -12,3 +12,10 @@
 
     <BoardsCharacterList />
 </template>
+
+<script lang="ts" setup>
+import { useDashboardStore } from '~~/stores/dashboardStore';
+
+const store = useDashboardStore();
+
+</script>
