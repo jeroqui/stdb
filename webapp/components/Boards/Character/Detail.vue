@@ -4,7 +4,7 @@
         <div class="flex">
             <div class="flex-grow pr-8">
                 <h1 class="text-4xl ml-8 mt-8 font-black">
-                    <UIField :text="character.name" default-text="Character Name" />
+                    <UIField :text="character.name" default-text="Character Name" @change="(value) => editCharacter('name', value)" />
                 </h1>
     
                 <p>
@@ -96,6 +96,19 @@ if (props.detailId != "" && props.detailId != undefined) {
             character.story = result.data.character.story || "";
         }
     })
+}
+
+
+function editCharacter(element: string, value: string) {
+    // TODO: character mutation
+    switch (element) {
+        case 'name':
+            character.name = value;
+            break;
+    
+        default:
+            break;
+    }
 }
 
 </script>
