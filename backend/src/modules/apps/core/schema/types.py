@@ -4,17 +4,23 @@ from graphene_django import DjangoObjectType, DjangoListField
 from src.modules.apps.vampire.schema.types import HumanType
 from ..models import Character, CharacterRelationship, Chronicle, Plot, PlotStages, Sesion, Event
 
-class PublicId(graphene.Interface):
+from src.modules.utils.schema.scalars import PublicId as PublicIdScalar
+
+
+class PublicIdInterface(graphene.Interface):
     # I haven't been able to figure out how to convert the id to public from the interface
     # so that logic is handled through a Graphene middleware
     # id = graphene.String(required=True)
-    ...
+    # TODO: Check if this works.
+    id = graphene.Field(PublicIdScalar, required=True)
+
 
 class ChronicleType(DjangoObjectType):
+    
     class Meta:
         model = Chronicle
         fields = ("id", "name")
-        # interfaces = (PublicId, )
+        # interfaces = (PublicIdInterface, )
 
 class CharacterRelationshipType(DjangoObjectType):
     class Meta:

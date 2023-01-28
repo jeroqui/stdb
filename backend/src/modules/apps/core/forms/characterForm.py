@@ -5,4 +5,4 @@ from src.modules.apps.core.models import Character
 class CharacterForm(ModelForm):
     class Meta:
         model = Character
-        fields = ["name", "story", "pc"]
+        fields = ["chronicle", "name", "story", "pc"]

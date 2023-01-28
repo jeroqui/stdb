@@ -3,7 +3,7 @@ from graphene import Scalar
 from graphql import Undefined
 from graphql.language.ast import StringValueNode
 
-from .hashids import to_db_id
+from ..hashids import to_db_id
 
 class PublicId(Scalar):
     """
@@ -18,3 +18,5 @@ class PublicId(Scalar):
     
     def parse_value(value):
         return to_db_id(value)
+
+

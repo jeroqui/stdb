@@ -2,7 +2,7 @@ import graphene
 
 from . import types as coretypes
 from src.modules.apps.vampire.schema import types as vampiretypes
-from src.modules.utils.schema import PublicId
+from src.modules.utils.schema.scalars import PublicId
 
 from src.modules.apps.core.models import Character, Chronicle, Plot, Sesion
 
