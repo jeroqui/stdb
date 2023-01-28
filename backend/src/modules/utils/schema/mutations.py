@@ -100,6 +100,5 @@ class FormErrorMutation(graphene.Mutation):
                         } for single_error in errors
                     ]
                 })
-            # errors = [[name, field] for name, field in form.errors.as_data().items()]
 
             return cls(errors=errors_list)
