@@ -1,16 +1,37 @@
 from datetime import datetime
 from django.db import models
 
+from django.conf import settings
+
 # Create your models here.
+User = settings.AUTH_USER_MODEL
+
 class Chronicle(models.Model):
     name = models.CharField(max_length=25)
     description = models.TextField()
 
     current_date = models.DateField()
 
+    owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name="chronicles_owned_set")
+    players = models.ManyToManyField(User, through="ChroniclePlayers", related_name="chronicles_as_player_set")
+
     def __str__(self):
         return self.name
 
+
+class ChroniclePlayers(models.Model):
+    class Role(models.IntegerChoices):
+        ST = 1, "Story teller"
+        PLAYER = 2, "Player"
+        GUEST = 3, "Guest"
+
+    chronicle = models.ForeignKey(Chronicle, on_delete=models.CASCADE)
+    player = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    role = models.PositiveSmallIntegerField(
+        choices=Role.choices,
+        default=Role.ST
+    )
 
 class ChronicleData(models.Model):
     chronicle = models.ForeignKey(Chronicle, on_delete=models.CASCADE)
