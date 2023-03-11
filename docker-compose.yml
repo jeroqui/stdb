@@ -1,0 +1,52 @@
+version: "3.3"
+services:
+  db:
+    image: postgres:12-alpine
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    networks:
+      - djangonetwork
+    environment:
+      POSTGRES_PASSWORD:
+      POSTGRES_USER:
+      POSTGRES_DB:
+
+  backend:
+    build:
+      dockerfile: ../docker/Dockerfile-backend
+      context: ./backend/
+    environment:
+      POSTGRES_PASSWORD:
+      POSTGRES_USER:
+      POSTGRES_DB:
+    volumes:
+      - .:/backend-code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    networks:
+      - djangonetwork
+    links:
+      - db:db
+  
+  web:
+    build:
+      dockerfile: ../docker/Dockerfile-webapp
+      context: ./webapp/
+    depends_on:
+      - backend
+  
+  nginx:
+    build:
+      dockerfile: ../docker/Dockerfile-server
+      context: ./nginx
+    expose:
+      - 80
+    depends_on:
+      - backend
+      - web
+
+networks:
+  djangonetwork:
+    driver: bridge

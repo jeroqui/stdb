@@ -1,8 +1,9 @@
+from django.conf import settings
 from hashids import Hashids
 
 # Init Hashids with custom cryptographic configuration
 hashids = Hashids(
-    salt="change for production",
+    salt=settings.HASHIDS_SALT,
     min_length=10,
     alphabet='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890_'
 )
