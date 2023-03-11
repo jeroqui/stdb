@@ -15,12 +15,10 @@ WORKDIR /backend-code
 COPY poetry.lock pyproject.toml /backend-code/
 RUN poetry config virtualenvs.create false \
     && poetry install --no-interaction --no-root \
-    && poetry add psycopg2
+    && poetry add psycopg2 hypercorn
 
-# Creating folders, and files for a project:
+# Creating folders, and files for the project:
 COPY . /backend-code/
+RUN chmod 755 production-entrypoint.sh
 
-RUN python manage.py migrate
-RUN python manage.py collectstatic --noinput
-
-CMD [ "hypercorn", "config.asgi:application" ]
+CMD "/backend-code/production-entrypoint.sh"
