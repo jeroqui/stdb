@@ -25,7 +25,7 @@ services:
       POSTGRES_USER:
       POSTGRES_DB:
     volumes:
-      - .:/backend-code
+      - backend-code:/backend-code
     ports:
       - "8000:8000"
     depends_on:
@@ -36,22 +36,22 @@ services:
     links:
       - db:database
   
-  # web:
-  #   build:
-  #     dockerfile: ../docker/Dockerfile-webapp
-  #     context: ./webapp/
-  #   depends_on:
-  #     - backend
-  
-  # nginx:
-  #   build:
-  #     dockerfile: ../docker/Dockerfile-server
-  #     context: ./nginx
-  #   expose:
-  #     - 80
-  #   depends_on:
-  #     - backend
-  #     - web
+  web:
+    build:
+      dockerfile: ../docker/Dockerfile-webapp
+      context: ./webapp/
+    depends_on:
+      - backend
+
+  nginx:
+    build:
+      dockerfile: ../docker/Dockerfile-server
+      context: ./nginx
+    expose:
+      - 80
+    depends_on:
+      - backend
+      - web
 
 networks:
   djangonetwork:
@@ -60,3 +60,4 @@ networks:
 volumes:
   db:
     driver: local
+  backend-code:
